@@ -32,7 +32,14 @@ const GenreList = ({ onSelectGenre }: GenreListProps) => {
               borderRadius={8}
               src={getCroppedImageUrl(genre.image_background)}
             />
-            <Button variant='link' onClick={() => onSelectGenre(genre)}>
+            <Button
+              _focus={{
+                fontWeight: 'bold',
+                color: 'yellow',
+              }}
+              variant='link'
+              onClick={() => onSelectGenre(genre)}
+            >
               {genre.name}
             </Button>
           </HStack>
