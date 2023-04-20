@@ -35,7 +35,6 @@ const GenreList = ({ onSelectGenre }: GenreListProps) => {
             <Button
               _focus={{
                 fontWeight: 'bold',
-                color: 'yellow',
               }}
               variant='link'
               onClick={() => onSelectGenre(genre)}
