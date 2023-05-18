@@ -2,7 +2,6 @@ import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { GameQuery } from '../App';
 import { FetchResponse } from '../services/api-client';
 import gameService, { Game } from '../services/gameService';
-import { all } from 'axios';
 
 const useGames = (gameQuery: GameQuery) =>
   useInfiniteQuery<FetchResponse<Game>, Error>({
