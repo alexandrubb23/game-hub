@@ -6,9 +6,8 @@ import gameService, { Game } from '../services/gameService';
 const useGames = (gameQuery: GameQuery) =>
   useInfiniteQuery<FetchResponse<Game>, Error>({
     queryKey: ['games', gameQuery],
-    queryFn: ({ pageParam = 1 }) => {
-      console.log({ pageParam });
-      return gameService.getAll({
+    queryFn: ({ pageParam = 1 }) =>
+      gameService.getAll({
         params: {
           genres: gameQuery.genre?.id,
           parent_platforms: gameQuery.platform?.id,
@@ -16,8 +15,7 @@ const useGames = (gameQuery: GameQuery) =>
           search: gameQuery.searchText,
           page: pageParam,
         },
-      });
-    },
+      }),
     staleTime: 24 * 60 * 60 * 1000, // 24h
     getNextPageParam: (lastPage, allPages) => {
       return lastPage.next ? allPages.length + 1 : undefined;
