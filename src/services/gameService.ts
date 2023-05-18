@@ -1,4 +1,3 @@
-import { GameQuery } from '../App';
 import APIClient from './api-client';
 import { Platform } from './platformService';
 
