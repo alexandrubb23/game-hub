@@ -24,6 +24,10 @@ class APIClient<T> {
       .get<FetchResponse<T>>(this.ebdpoint, config)
       .then(res => res.data);
   };
+
+  getOne = (id: number | string) => {
+    return axiosInstance.get<T>(`${this.ebdpoint}/${id}`).then(res => res.data);
+  };
 }
 
 export default APIClient;
