@@ -18,7 +18,7 @@ import { BsGlobe } from 'react-icons/bs';
 import { HStack, Icon, Text } from '@chakra-ui/react';
 import { IconType } from 'react-icons';
 
-import { Platform } from '../entities/Platform';
+import Platform from '../entities/Platform';
 
 interface PlatformIconListProps {
   platforms: Platform[];

@@ -3,7 +3,7 @@ import ms from 'ms';
 
 import { FetchResponse } from '../services/api-client';
 import gameService from '../services/gameService';
-import { Game } from '../entities/Game';
+import Game from '../entities/Game';
 import useGameQueryStore from '../store';
 
 const useGames = () => {
