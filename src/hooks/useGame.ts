@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import ms from 'ms';
-import gameService, { Game } from '../services/gameService';
+import gameService from '../services/gameService';
+import { Game } from '../entities/Game';
 
 const useGame = (slug: string) =>
   useQuery<Game, Error>({
