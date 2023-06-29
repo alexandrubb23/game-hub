@@ -1,11 +1,5 @@
-import {
-  Grid,
-  GridItem,
-  Image,
-  SimpleGrid,
-  useBreakpointValue,
-} from '@chakra-ui/react';
-import useScreenshots from '../hooks/useScreenshots';
+import { Image, SimpleGrid } from '@chakra-ui/react';
+import { useScreenshots } from '../hooks';
 
 interface GameScreenshotsProps {
   gameId: number;
