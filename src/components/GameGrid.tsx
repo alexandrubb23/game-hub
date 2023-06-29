@@ -1,21 +1,22 @@
 import { SimpleGrid, Spinner, Text } from '@chakra-ui/react';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import useGames from '../hooks/useGames';
+import { useCalculatePageSize, useCreateArray } from '../hooks';
 import GameCard from './GameCard';
 import GameCardContainer from './GameCardContainer';
 import GameCardSkeleton from './GameCardSkeleton';
 
 const GameGrid = () => {
-  const pageSize = Math.ceil(window.innerHeight / 100);
+  const pageSize = useCalculatePageSize();
 
   const { data, error, fetchNextPage, hasNextPage, isLoading } =
     useGames(pageSize);
 
-  const skeletons = Array.from({ length: pageSize }, (_, i) => i + 1);
-
   if (error) return <Text>{error.message}</Text>;
+
+  const skeletons = useCreateArray(pageSize);
 
   const fetchedGamesCount =
     data?.pages.reduce((total, page) => total + page.results.length, 0) || 0;
