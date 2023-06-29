@@ -6,7 +6,8 @@ import gameService from '../services/gameService';
 import Game from '../entities/Game';
 import useGameQueryStore from '../store';
 
-const useGames = () => {
+const useGames = (pageSize = 20) => {
+  console.log({ pageSize });
   const gameQuery = useGameQueryStore(s => s.gameQuery);
 
   return useInfiniteQuery<FetchResponse<Game>, Error>({
@@ -19,6 +20,7 @@ const useGames = () => {
           ordering: gameQuery.sortOrder,
           search: gameQuery.searchText,
           page: pageParam,
+          page_size: pageSize,
         },
       }),
     staleTime: ms('24h'), // 24h
