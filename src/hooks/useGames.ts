@@ -7,7 +7,6 @@ import Game from '../entities/Game';
 import useGameQueryStore from '../store';
 
 const useGames = (pageSize = 20) => {
-  console.log({ pageSize });
   const gameQuery = useGameQueryStore(s => s.gameQuery);
 
   return useInfiniteQuery<FetchResponse<Game>, Error>({

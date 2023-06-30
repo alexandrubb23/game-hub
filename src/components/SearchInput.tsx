@@ -1,34 +1,44 @@
 import { useRef } from 'react';
-import { Input, InputGroup, InputLeftAddon } from '@chakra-ui/react';
-import { BsSearch } from 'react-icons/bs';
-import useGameQueryStore from '../store';
 import { useNavigate } from 'react-router-dom';
+import {
+  FormControl,
+  Input,
+  InputGroup,
+  InputLeftAddon,
+} from '@chakra-ui/react';
+import { BsSearch } from 'react-icons/bs';
+import { debounce } from 'lodash';
 
-const SearchInput = () => {
-  const ref = useRef<HTMLInputElement>(null);
+import useGameQueryStore from '../store';
+
+interface SearchInputProps {
+  wait?: number;
+}
+
+const SearchInput = ({ wait = 500 }: SearchInputProps) => {
   const setSearchText = useGameQueryStore(s => s.setSearchText);
   const navigate = useNavigate();
 
+  const handleSearch = debounce(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setSearchText(event.target.value);
+      navigate('/');
+    },
+    wait
+  );
+
   return (
-    <form
-      onSubmit={event => {
-        event.preventDefault();
-        if (ref.current) {
-          setSearchText(ref.current.value);
-          navigate('/');
-        }
-      }}
-    >
+    <FormControl>
       <InputGroup>
         <InputLeftAddon children={<BsSearch />} />
         <Input
           borderRadius={20}
           placeholder='Search games...'
           variant='filled'
-          ref={ref}
+          onChange={handleSearch}
         />
       </InputGroup>
-    </form>
+    </FormControl>
   );
 };
 
